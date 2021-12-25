@@ -1,0 +1,60 @@
+<div class="mt-3">
+  <div class="d-flex justify-content-center my-4">
+    <button
+      (click)="onClickUpdateAllStatus(true)"
+      class="btn btn-outline-dark mx-3"
+    >
+      TOUS DISP.
+    </button>
+    <button
+      (click)="onClickUpdateAllStatus(false)"
+      class="btn btn-outline-dark mx-3"
+    >
+      TOUT PAS DISP.
+    </button>
+  </div>
+
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; index as i">
+        <th scope="row">{{ product.id }}</th>
+        <td>{{ product.name }}</td>
+        <td>{{ product.status ? "Dispo" : "Pas dispo" }}</td>
+        <td>
+          <button
+            class="btn btn-outline-dark mx-2"
+            (click)="onClickUpdateStatus(i)"
+          >
+            Switche en {{ product.status ? "Pas dispo" : "Dispo" }}
+          </button>
+          <button
+            [routerLink]="['/products', product.id]"
+            class="btn btn-outline-primary mx-2"
+          >
+            Détails
+          </button>
+          <button
+            [routerLink]="['/products/', 'edit', product.id]"
+            class="btn btn-outline-warning mx-2"
+          >
+            Modifier
+          </button>
+          <button
+            (click)="onClickDeleteProduct(i)"
+            class="btn btn-outline-dark mx-2"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
